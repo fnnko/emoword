@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'words/css/quote.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <title>今のあなたへ一言</title>
+</head>
+<body class="page-transition">
+    <div class="card-container" onclick="flipCard()">
+        <div class="quote-card">
+            <div class="card-front">
+                <p>カードをクリックしてメッセージを表示</p>
+            </div>
+            <div class="card-back">
+                {% if quote %}
+                    <p>{{ quote.text }}</p>
+                {% else %}
+                    <p>該当する名言がありません。</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <a href="{% url 'emotion_select' %}">別の感情を選ぶ</a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const card = document.querySelector(".quote-card");
+            const cardBack = document.querySelector(".card-back");
+        
+            card.addEventListener("click", function () {
+                card.classList.toggle("flip");
+        
+                if (card.classList.contains("flip")) {
+                    cardBack.classList.add("sparkle"); // キラキラエフェクトを適用
+                    setTimeout(() => {
+                        cardBack.classList.remove("sparkle");
+                    }, 3000); // 3秒後にエフェクトを解除
+                }
+            });
+        });
+        
+    </script>
+</body>
+</html>

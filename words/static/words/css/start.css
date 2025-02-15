@@ -1,0 +1,143 @@
+body {
+    background: linear-gradient(to bottom, #253fac, #b490c0, #e8d07a);
+    height: 100vh;
+    width: 100vw; /* 横幅を画面サイズに固定 */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* スクロール防止 */
+    position: relative;
+    font-family: "Noto Serif JP", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ページ遷移アニメーション */
+.page-transition {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+/* フェードイン＆スライドアニメーション */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 月の画像を画面の中央（水平方向）に配置 */
+img {
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+    top: -20%; /* 上からの位置調整 */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+/* start_content の内容を中央に配置 */
+.start_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 600px;
+}
+
+.title {
+    line-height: 1.2em;
+    border-bottom: solid 1px #fff;
+    color: rgb(236, 236, 236);
+    font-size: 100px;
+    text-align: center; /* 左寄せを中央寄せに変更 */
+    max-width: 90%; /* 画面を超えないようにする */
+    margin: 20px auto; /* 自動で中央配置 */
+    color: #fff;
+    position: relative;
+    font-family: arno-pro, serif;
+    font-weight: 400;
+    font-style: normal;
+    background-image: linear-gradient(
+        70deg,
+        rgba(211, 209, 209, 0.3) 45%,
+        #fff 50%,
+        rgba(211, 209, 209, 0.3) 55%
+    );
+    background-size: 500% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: shine 5s infinite;
+}
+
+@keyframes shine {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.start_content a {
+    text-decoration: none;
+    margin: 20px; /* 余白を調整 */
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px 30px; /* サイズ調整 */
+    border-radius: 15px; /* 角丸 */
+    font-size: 16px; /* スマホ向けに調整 */
+    font-weight: bold;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    transition: 0.3s ease-in-out;
+}
+
+.start_content a:hover {
+    color: #d7d7d7;
+    background-color: rgba(151, 151, 151, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        height: 100vh;
+        width: 100vw; /* 画面幅に合わせる */
+        overflow: hidden; /* スクロール防止 */
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+        top: -10%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .title {
+        font-size: 60px; /* フォントサイズを縮小 */
+        max-width: 90%;
+        line-height: 1.2em;
+    }
+
+    .start_content {
+        height: auto; /* スマホ用に高さを自動調整 */
+        padding: 20px;
+    }
+
+    .start_content a {
+        font-size: 14px; /* 文字サイズを調整 */
+        padding: 10px 25px;
+    }
+}

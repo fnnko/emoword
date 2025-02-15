@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'words/css/emotions.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+    <title>select page</title>
+</head>
+<body class="page-transition">
+    <h1>今のあなたの気持ちは？</h1>
+
+    <!-- PC表示時にリンクリスト -->
+    <ul class="emotion-list">
+        {% for emotion in emotions %}
+            <li><a href="{% url 'quote' emotion.id %}">{{ emotion.name }}</a></li>
+        {% endfor %}
+    </ul>
+
+    <!-- スマホ表示時にプルダウンセレクト -->
+    <div class="emotion-select-container">
+        <select id="emotion-select" onchange="location = this.value;">
+            <option value="">--選択してください--</option>
+            {% for emotion in emotions %}
+                <option value="{% url 'quote' emotion.id %}">{{ emotion.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+</body>
+</html>
