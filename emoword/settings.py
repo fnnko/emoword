@@ -118,7 +118,16 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ...
+try:
+    from .local_settings import *
+except ImportError:
+    # local_settings.py が存在しなくてもエラーにならないようにする
+    pass
